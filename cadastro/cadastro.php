@@ -26,25 +26,50 @@
         
     <form class="form">
         <p class="form-title">Faça o cadastro</p>
+
         <div class="input-container">
-           <input type="text" placeholder="Digite seu nome">
+          <p>
+            <label for="nome">Nome:</label>
+            <input type="text" placeholder="Digite seu nome">
+          </p>
         </div>
+
         <div class="input-container">
+          <p>
+            <label for="cpf">CPF:</label>
+            <input type="text" placeholder="Digite seu CPF">
+          </p>
+        </div>
+
+        <div class="input-container">
+          <p>
+            <label for="email">E-mail:</label>
             <input type="text" placeholder="E-mail">
-         </div>
+          </p>
+        </div>
+
          <div class="input-container">
+          <p>
+            <label for="senha">Senha:</label>
             <input type="password" placeholder="Senha">
+          </p>
         </div>
+
         <div class="input-container">
-           <input type="password" placeholder="Confirme a senha">
+          <p>
+            <label for="senha">Confirme a senha:</label>
+            <input type="password" placeholder="Confirme a senha">
+          </p>
         </div>
-          <button type="submit" class="submit">
-         Entrar
-       </button>
+
+        <p> 
+          <button type="submit" class="submit">Cadastrar</button>
+        </p>
  
        <p class="link">
          Já possui conta? <a href="login.html">Login</a>
        </p>
+       
     </form>
  
   </div>

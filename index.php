@@ -3,8 +3,10 @@ include('conexao.php');
 $exibir = '';
 if(isset($_POST['email']) || isset($_POST['senha'])){
 
-  if(strlen($_POST['email']) == 0){
-    $exibir = "Preencha seu e-mail";
+  if((strlen($_POST['email']) == 0) && (strlen($_POST['senha']) == 0)){
+    $exibir = "Preencha seu e-mail e sua senha"; 
+  } else if(strlen($_POST['email']) == 0){
+    $exibir = "Preencha seu email";
   } else if(strlen($_POST['senha']) == 0){
     $exibir = "Preencha sua senha";
   } else {
@@ -25,8 +27,8 @@ if(isset($_POST['email']) || isset($_POST['senha'])){
         session_start();
       }
 
-      $_SESSION['user'] = $usuario['id'];
-      $_SESSION['name'] = $usuario['nome'];
+      $_SESSION['id'] = $usuario['id'];
+      $_SESSION['nome'] = $usuario['nome'];
 
       header("Location: /trabalho/ProjetoFinalPhp/home/home.php");
 
@@ -70,14 +72,14 @@ if(isset($_POST['email']) || isset($_POST['senha'])){
       <div class="input-container">
         <p>
           <label for="email">E-mail</label>
-          <input type="text" placeholder="E-mail">
+          <input type="text" name="email" placeholder="Digite seu E-mail">
         </p>
       </div>
 
       <p>
       <div class="input-container">
         <label for="senha">Senha</label>
-        <input type="password" placeholder="Senha">
+        <input type="password" name="senha" placeholder="Digite sua Senha">
       </div>
       </p>
        
@@ -93,7 +95,8 @@ if(isset($_POST['email']) || isset($_POST['senha'])){
 
     <p class="link">
       Sem conta? <a href="/trabalho/ProjetoFinalPhp/cadastro/cadastro.php">Inscrever-se</a>
-      </p>
+    </p>
+    
     </form>
   </div>
 </body>
