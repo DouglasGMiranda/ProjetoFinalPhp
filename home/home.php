@@ -7,6 +7,7 @@
 <title>Advanced Header Menu</title>
 </head>
 <body>
+  Bem vindo a home do site, <?php echo $_SESSION['nome'];?>
 
 <header>
   <div class="container">
