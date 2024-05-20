@@ -1,10 +1,16 @@
+<?php 
+
+  session_start();
+
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Cadastro</title>
 </head>
 <body>
     <header>
@@ -24,7 +30,7 @@
       </header>
     <div class="form-container">
         
-    <form class="form">
+    <form action="cadastrar.php" method="POST" class="form">
         <p class="form-title">Faça o cadastro</p>
 
         <div class="input-container">
@@ -57,7 +63,7 @@
 
         <div class="input-container">
           <p>
-            <label for="senha">Confirme a senha:</label>
+            <label for="confsenha">Confirme a senha:</label>
             <input type="password" placeholder="Confirme a senha">
           </p>
         </div>
@@ -71,7 +77,6 @@
        </p>
        
     </form>
- 
   </div>
 </body>
 </html>
