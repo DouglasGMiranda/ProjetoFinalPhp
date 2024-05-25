@@ -1,5 +1,5 @@
 <?php 
-include('conexao.php');
+include('conexao/conexao.php');
 $exibir = '';
 if(isset($_POST['email']) || isset($_POST['senha'])){
 
@@ -58,6 +58,7 @@ if(isset($_POST['email']) || isset($_POST['senha'])){
           <li><a href="#">Services</a></li>
           <li><a href="/trabalho/ProjetoFinalPhp/index.php">Login</a></li>
           <li><a href="/trabalho/ProjetoFinalPhp/cadastro/cadastro.php">Cadastro</a></li>
+          <li><a href="../logout.php">Logout</a></li>
         </ul>
       </nav>
       <div class="menu-toggle">Menu</div>

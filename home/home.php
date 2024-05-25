@@ -24,6 +24,7 @@ include("protect.php");
         <li><a href="#">Services</a></li>
         <li><a href="login.html">Login</a></li>
         <li><a href="cadastro.html">Cadastro</a></li>
+        <li><a href="../logout.php">Logout</a></li>
       </ul>
     </nav>
     <div class="menu-toggle">Menu</div>
