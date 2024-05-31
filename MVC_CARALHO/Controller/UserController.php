@@ -17,4 +17,11 @@ class UsuarioController {
             $novoUsuario->cadastrarUsuario();
         }
     }
+
+    //Envia o pedido de verificação para o model
+    public function cpfExiste($cpf) {
+        require_once(__DIR__ . '/../Model/Usuario.php');
+        $usuario = new Usuario();
+        return $usuario->verificarCpf($cpf);
+    }
 }

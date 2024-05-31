@@ -5,7 +5,7 @@
         $email = $_POST['email'];
         $cpf = $_POST['cpf'];
         $cpf = preg_replace('/[^0-9]/is', '', $cpf);
-        $dataNascimento = $_POST['dataNascimento'];
+        $dataNascimento = $_POST["dataNascimento"];
         $senha = $_POST['senha'];
         $confSenha = $_POST['confSenha'];
         $erros = [];
@@ -17,16 +17,70 @@
         }
 
         // Validação do Email
-        elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $erros[] = "Formato de email inválido.";
         }
 
         // Validação do CPF
-        elseif (!preg_match("/^\d{11}$/", $cpf)) {
+        if (!preg_match("/^\d{11}$/", $cpf)) {
             $erros[] = "O CPF deve conter 11 dígitos.";
         }
 
+        else {
+            require_once("Controller/usuarioController.php");
+            $controle = new usuarioController();
 
+            if ($controle->cpfExiste($cpf)) {
+            $errors[] = "CPF já cadastrado.";
+            }
+        }
+
+        
+        // Validação da Data de Nascimento
+        if (empty($dataNascimento) || !preg_match("/^\d{2}\/\d{2}\/\d{4}$/", $dataNascimento)) {
+            $errors[] = "Data de nascimento inválida. Use o formato DD/MM/AAAA.";
+        } 
+        
+        else {
+            $dataNascimentoObj = DateTime::createFromFormat('d/m/Y', $dataNascimento);
+
+            if ($dataNascimentoObj === false) {
+                $errors[] = "Data de nascimento inválida. Use o formato DD/MM/AAAA.";
+            } 
+            
+            else {
+                $hoje = new DateTime();
+                $idade = $hoje->diff($dataNascimentoObj)->y;
+
+                if ($idade < 18) {
+                    $errors[] = "Você deve ter pelo menos 18 anos.";
+                }
+            }
+        }
+
+        // Validar senha
+        if (empty($_POST["senha"]) || strlen($_POST["senha"]) < 6) {
+            $errors[] = "A senha deve ter pelo menos 6 caracteres.";
+        }
+
+        // Validar confirmação de senha
+        if ($senha !== $confSenha) {
+            $errors[] = "As senhas não conferem.";
+        }
+
+        // Exibir erros
+        if (!empty($errors)) {
+            foreach ($errors as $error) {
+                echo "<p>$error</p>";
+            }
+        } 
+        
+        else {
+            // Processar o cadastro do usuário
+            action="index.php?url=cadastrarUsuario"
+            echo "Usuário cadastrado com sucesso!";
+        }
+    
     }
 ?>
 
@@ -52,7 +106,7 @@
     </header>
     <h1>Cadastrar</h1>
 
-    <form method="POST" action="index.php?url=cadastrarUsuario">
+    <form method="POST">
 
         <label>Nome:</label>
         <input type="text" name="nomeUsuario" id="nomeUsuario" placeholder="Nome completo"><br><br>

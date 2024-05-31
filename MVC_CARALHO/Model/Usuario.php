@@ -31,6 +31,17 @@ class Usuario {
         }
     }
 
+    //Checa se o CPF já está cadastrado no banco de dados
+    public function verificarCpf($cpf) {
+        $conn = Conexao::conectar();
+        $sql = $conn->prepare("SELECT COUNT(*) FROM usuarios WHERE cpf = :cpf");
+        $sql->bindParam(':cpf', $cpf);
+        $sql->execute();
+        $count = $sql->fetchColumn();
+        return $count>0;
+    }
+
+
     // Getters e Setters
     public function getIdUsuario() {
         return $this->idUsuario;
