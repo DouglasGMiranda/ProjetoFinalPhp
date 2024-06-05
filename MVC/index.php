@@ -13,6 +13,9 @@ elseif ($url == 'CADASTRARUSUARIO') {
 elseif ($url == 'HOME') {
     require_once(__DIR__ . '/View/Home/Home.php');
 }
+elseif($url == 'SOBRE'){
+    require_once(__DIR__ . '/View/Sobre/Sobre.php');
+}
 elseif ($url == 'LOGIN') {
     require_once(__DIR__ . '/View/Login/Login.php');
 }
