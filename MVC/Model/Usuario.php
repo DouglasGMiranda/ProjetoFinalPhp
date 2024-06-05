@@ -22,7 +22,7 @@ class Usuario {
             $sql->bindValue(':senha', $this->getSenha());
 
             $sql->execute();
-            echo "Usuário cadastrado com sucesso!";
+            header('Location: Home');
         } catch (PDOException $erro) {
             echo "Erro ao cadastrar usuário! " . $erro->getMessage();
         }
@@ -35,6 +35,33 @@ class Usuario {
         $sql->execute();
         return $sql->fetchColumn() > 0;
     }
+
+    public function verificarEmail($email) {
+        $conn = Conexao::conectar();
+        $sql = $conn->prepare("SELECT COUNT(*) FROM usuarios WHERE email = :email");
+        $sql->bindParam(':email', $email);
+        $sql->execute();
+        return $sql->fetchColumn() > 0;
+    }
+
+    public function getUserID($email) {
+        $conn = Conexao::conectar();
+        $sql = $conn->prepare("SELECT user_id FROM usuarios WHERE email = :email");
+        $sql->bindParam(':email', $email);
+        $sql->execute();
+        $result = $sql->fetch(PDO::FETCH_ASSOC);
+        return $result['user_id'];
+    }
+
+    public function logar($email, $senha) {
+        $conn = Conexao::conectar();
+        $sql = $conn->prepare("SELECT COUNT(*) FROM usuarios WHERE email = :email AND senha = :senha");
+        $sql->bindParam(':email', $email);
+        $sql->bindParam(':senha', $senha);
+        $sql->execute();
+        return $sql->fetchColumn();
+    }
+    
 
     // Getters e Setters
     public function getIdUsuario() {
