@@ -4,30 +4,31 @@ require_once('Conexao.php');
 class Pedido {
     private $pedido_id;
     private $user_id;
-    private $descricaoProduto;
-    private $quantidade;
-    private $peso;
-    private $dataRecebimento;
-    private $dataEntrega;
-    private $status;
+    private $descricao;
+    private $qntd;
+    private $pesoKg;
+    private $recebimento;
+    private $entregaLimite;
+    private $permissao;
 
     
 
     // CRUD methods
-    public function cadastrar() {
+    public function cadastrarPedido() {
         try {
             $conn = Conexao::conectar();
-            $sql = $conn->prepare("INSERT INTO pedidos (user_id, descricao, qntd, peso-kg, recebimento, entrega-limite, status) VALUES (:user_id, :descricaoProduto, :quantidade, :peso, :dataRecebimento, :dataEntrega, :status)");
+            $sql = $conn->prepare("INSERT INTO pedidos (user_id, descricao, qntd, peso-kg, recebimento, entrega-limite, permissao) VALUES (:user_id, :descricao, :qntd, :pesoKg, :recebimento, :entregaLimite	, :permissao)");
 
             $sql->bindValue(':user_id',  $this->getUser_id());
-            $sql->bindValue(':descricaoProduto', $this->getDescricaoProduto());
-            $sql->bindValue(':quantidade', $this->getQuantidade());
-            $sql->bindValue(':peso', $this->getPeso());
-            $sql->bindValue(':dataRecebimento', $this->getDataRecebimento());
-            $sql->bindValue(':dataEntrega', $this->getDataEntrega());
-            $sql->bindValue(':status', $this->getStatus());
+            $sql->bindValue(':descricao', $this->getDescricao());
+            $sql->bindValue(':qntd', $this->getQntd());
+            $sql->bindValue(':', $this->getPesoKg());
+            $sql->bindValue(':recebimento', $this->getRecebimento());
+            $sql->bindValue(':entregaLimite', $this->getEntregaLimite());
+            $sql->bindValue(':permissao', $this->getPermissao());
 
             $sql->execute();
+            header('Location: ListarPedidos');
         } catch (PDOException $erro) {
             echo "Erro ao cadastrar pedido! " . $erro->getMessage();
         }
@@ -54,15 +55,15 @@ class Pedido {
     public function atualizar() {
         try {
             $conn = Conexao::conectar();
-            $sql = $conn->prepare("UPDATE logistica.pedidos SET descricao = :descricaoProduto, qntd = :quantidade, peso-kg = :peso, recebimento = :dataRecebimento, entrega-limite = :dataEntrega, status = :status WHERE pedido_id = :pedido_id");
+            $sql = $conn->prepare("UPDATE logistica.pedidos SET descricao = :descricao, qntd = :qntd, peso-kg = :pesoKg, recebimento = :recebimento, entrega-limite = :entregaLimite, permissao = :permissao WHERE pedido_id = :pedido_id");
 
             $sql->bindValue(':idLogistica', $this->getPedido_id());
-            $sql->bindValue(':descricaoProduto', $this->getDescricaoProduto());
-            $sql->bindValue(':quantidade', $this->getQuantidade());
-            $sql->bindValue(':peso', $this->getPeso());
-            $sql->bindValue(':dataRecebimento', $this->getDataRecebimento());
-            $sql->bindValue(':dataEntrega', $this->getDataEntrega());
-            $sql->bindValue(':status', $this->getStatus());
+            $sql->bindValue(':descricao', $this->getDescricao());
+            $sql->bindValue(':qntd', $this->getQntd());
+            $sql->bindValue(':', $this->getPesoKg());
+            $sql->bindValue(':recebimento', $this->getRecebimento());
+            $sql->bindValue(':entregaLimite', $this->getEntregaLimite());
+            $sql->bindValue(':permissao', $this->getPermissao());
 
             $sql->execute();
         } catch (PDOException $erro) {
@@ -98,50 +99,50 @@ class Pedido {
         $this->user_id = $user_id; 
     }
 
-    public function getDescricaoProduto() { 
-        return $this->descricaoProduto; 
+    public function getDescricao() { 
+        return $this->descricao; 
     }
 
-    public function setDescricaoProduto($descricaoProduto) {
-        $this->descricaoProduto = $descricaoProduto;
+    public function setDescricao($descricao) {
+        $this->descricao = $descricao;
     }
 
-    public function getQuantidade() {
-        return $this->quantidade;
+    public function getQntd() {
+        return $this->qntd;
     }
 
-    public function setQuantidade($quantidade) {
-        $this->quantidade = $quantidade;
+    public function setQntd($qntd) {
+        $this->qntd = $qntd;
     }
 
-    public function getPeso() {
-        return $this->peso;
+    public function getPesoKg() {
+        return $this->pesoKg;
     }
 
-    public function setPeso($peso) {
-        $this->peso = $peso;
+    public function setPesoKg($pesoKg) {
+        $this->pesoKg = $pesoKg;
     }
 
-    public function getDataRecebimento() {
-        return $this->dataRecebimento;
+    public function getRecebimento() {
+        return $this->recebimento;
     }
 
-    public function setDataRecebimento($dataRecebimento) {
-        $this->dataRecebimento = $dataRecebimento;
+    public function setRecebimento($recebimento) {
+        $this->recebimento = $recebimento;
     }
 
-    public function getDataEntrega() {
-        return $this->dataEntrega;
+    public function getEntregaLimite() {
+        return $this->entregaLimite;
     }
-    public function setDataEntrega($dataEntrega) {
-        $this->dataEntrega = $dataEntrega;
+    public function setEntregaLimite($entregaLimite) {
+        $this->entregaLimite = $entregaLimite;
     }
 
-    public function getStatus() {
-        return $this->status;
+    public function getPermissao() {
+        return $this->permissao;
     }
-    public function setStatus($status) {
-        $this->status = $status;
+    public function setPermissao($permissao) {
+        $this->permissao = $permissao;
     }
 }
 ?>

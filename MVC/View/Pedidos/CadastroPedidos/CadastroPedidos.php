@@ -40,16 +40,16 @@ unset($_SESSION['erros']);
 
     <form method="POST" action="index.php?url=CadastrarPedidos">
         <label>Descrição do Produto:</label>
-        <input type="text" name="descricaoProduto" id="descricaoProduto" placeholder="Descrição do produto" maxlength="200"><br><br>
+        <input type="text" name="descricao" id="descricao" placeholder="Descrição do produto" maxlength="200"><br><br>
 
         <label>Quantidade:</label>
-        <input type="text" name="quantidade" id="quantidade" placeholder="Quantidade"><br><br>
+        <input type="text" name="qntd" id="qntd" placeholder="Quantidade"><br><br>
 
         <label>Peso:</label>
-        <input type="text" name="peso" id="peso" placeholder="Peso(0,00kg)" maxlength="8"><br><br>
+        <input type="text" name="peso-kg" id="peso-kg" placeholder="Peso(0,00kg)" maxlength="8"><br><br>
 
         <label>Data de Recebimento:</label>
-        <input type="text" name="dataRecebimento" id="dataRecebimento" placeholder="DD/MM/AAAA" maxlength="10"><br><br>
+        <input type="text" name="recebimento" id="recebimento" placeholder="DD/MM/AAAA" maxlength="10"><br><br>
 
         <button type="submit" name="cadastrarPedidos">Cadastrar</button>
 

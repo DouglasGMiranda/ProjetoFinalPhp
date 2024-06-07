@@ -90,6 +90,7 @@ class UsuarioController {
             $novoUsuario->setSenha($senha);
 
             $novoUsuario->cadastrarUsuario();
+            header('Location: Login');
         }
     }
 
@@ -109,32 +110,24 @@ class UsuarioController {
             $senha = $_POST['senha'];
     
             $usuario = new Usuario();
-            $result = $usuario->logar($email, $senha);
+            $usuarioEncontrado = $usuario->logar($email, $senha);
     
-            if ($result>0) {
-                // Obtendo o user_id do banco de dados
-                $user_id = $usuario->getUserID($email);
+            if ($usuarioEncontrado) {
+                $id_user = $usuario->getUserID($email);
+                $nome_user = $usuario->getNomeUsuario($email);
+                $email_user = $usuario->getEmail($email);
     
-                // Iniciando a sessão
-                session_start();
-
-                
-    
-                // Adicionando informações do usuário à sessão
                 $_SESSION['usuario'] = [
-                    'idUsuario' => $usuario->getIdUsuario(),
-                    'nomeUsuario' => $usuario->getNomeUsuario(),
-                    'email' => $usuario->getEmail()
+                    'idUsuario' => $id_user,
+                    'nome' => $nome_user,
+                    'email' => $email_user
                 ];
-                $_SESSION['user_id'] = $user_id;
-    
-                // Redirecionando para a página Home
                 header('Location: Home');
+                exit();
             } else {
-                // Usuário ou senha inválidos
-                session_start();
-                $_SESSION['erros'] = ['Usuário ou senha inválidos.'];
+                $_SESSION['erros'] = ["Email ou senha inválidos."];
                 header('Location: Login');
+                exit();
             }
         }
     }
