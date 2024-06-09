@@ -10,7 +10,7 @@ elseif ($url == 'CADASTRARUSUARIO') {
     $usuarioController = new UsuarioController();
     $usuarioController->validaUser();
 }
-elseif ($url == 'HOME') {
+elseif ($url == 'HOME' || $url == '') {
     require_once(__DIR__ . '/View/Home/Home.php');
 }
 elseif($url == 'SOBRE'){
@@ -54,7 +54,11 @@ elseif ($url == 'EDITARPEDIDOS') {
         header('Location: Login');
         exit();
     }
-    require_once(__DIR__ . '/View/Pedidos/EditarPedidos/EditarPedidos.php');
+    elseif(isset($_GET['id'])) {
+        // Obtém o valor da variável
+        $id = $_GET['id'];
+        require_once(__DIR__ . '/View/Pedidos/EditarPedidos/EditarPedidos.php');
+    }
 }
 elseif ($url == 'ATUALIZARPEDIDOS') {
     require_once(__DIR__ . '/Controller/PedidosController.php');

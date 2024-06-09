@@ -116,11 +116,13 @@ class UsuarioController {
                 $id_user = $usuario->getUserID($email);
                 $nome_user = $usuario->getNomeUsuario($email);
                 $email_user = $usuario->getEmail($email);
+                $permissao = $usuario->verificarPermissao($email);
     
                 $_SESSION['usuario'] = [
                     'idUsuario' => $id_user,
                     'nome' => $nome_user,
-                    'email' => $email_user
+                    'email' => $email_user,
+                    'permissao' => $permissao
                 ];
                 header('Location: Home');
                 exit();

@@ -19,7 +19,7 @@ class PedidosController {
             $qntd = $_POST['qntd'];
             $pesoKg = $_POST['peso-kg'];
             $recebimento = $_POST['recebimento'];
-            $permissao = 0; // permissao inicial
+            $situacao = 0; // situacao inicial
             $erros = [];
 
             if (empty($descricao) || strlen($descricao) > 200) {
@@ -49,13 +49,13 @@ class PedidosController {
             } 
             else {
                 // Processar o cadastro do pedido
-                $this->processa('C', $user_id, $descricao, $qntd, $pesoKg, $dataRecebimentoObj, $dataEntregaObj, $permissao);
+                $this->processa('C', $user_id, $descricao, $qntd, $pesoKg, $dataRecebimentoObj, $dataEntregaObj, $situacao);
             }
         }
     }
 
-    public function processa($acao, $user_id, $descricao, $qntd, $pesoKg, $dataRecebimentoObj, $dataEntregaObj, $permissao){
-        if($acao == 'C'){
+    public function processa($acao, $user_id, $descricao, $qntd, $pesoKg, $dataRecebimentoObj, $dataEntregaObj, $situacao){
+        if($acao == 'C'){//Create
             $novoPedido = new Pedido();
             $novoPedido->setUser_id($user_id);
             $novoPedido->setDescricao($descricao);
@@ -63,10 +63,73 @@ class PedidosController {
             $novoPedido->setPesoKg($pesoKg);
             $novoPedido->setRecebimento($dataRecebimentoObj->format('Y-m-d'));
             $novoPedido->setEntregaLimite($dataEntregaObj->format('Y-m-d'));
-            $novoPedido->setPermissao($permissao);
+            $novoPedido->setSituacao($situacao);
 
             $novoPedido->cadastrarPedido();
-            header('Location: ListarPedidos');
+        }
+
+        elseif($acao == 'R'){//Read
+
+            $permissao = $_SESSION['usuario']['permissao'];
+          
+            if($permissao < 1){
+
+                $pedido = new Pedido();
+                $pedido->setUser_id($user_id);
+                $pedido->listar();
+            }
+
+            else{
+                $novoPedido = new Pedido();
+                $novoPedido->listarTudo();
+            }
+        }
+
+        elseif($acao == 'U'){//Update
+            $permissao = $_SESSION['usuario']['permissao'];
+
+            if($permissao < 1){
+                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                    $pedido_id = $_POST['pedido_id']; 
+                    $descricao = $_POST['descricao'];
+                    $qntd = $_POST['qntd'];
+                    $pesoKg = $_POST['pesoKg'];
+        
+                    $erros = [];
+        
+                    if (empty($descricao) || strlen($descricao) > 200) {
+                        $erros[] = "A descrição do produto deve ter até 200 caracteres.";
+                    }
+        
+                    if (!is_numeric($qntd) || $qntd < 1 || $qntd > 100) {
+                        $erros[] = "A qntd deve ser um número entre 1 e 100.";
+                    }
+        
+                    if (empty($pesoKg) || strlen($pesoKg) > 8) {
+                        $erros[] = "O pesoKg deve ter até 8 caracteres.";
+                    }
+        
+                    if (!empty($erros)) {
+                        $_SESSION['erros'] = $erros;
+                        header("Location: EditarPedido?id=$pedido_id");
+                        exit();
+                    } 
+                    
+                    else {
+                        $novoPedido = new Pedido();
+                        $novoPedido->setPedido_id($pedido_id);
+                        $novoPedido->setDescricao($descricao);
+                        $novoPedido->setQntd($qntd);
+                        $novoPedido->setPesoKg($pesoKg);
+                        $novoPedido->setRecebimento($dataRecebimentoObj->format('Y-m-d'));
+                        $novoPedido->setEntregaLimite($dataEntregaObj->format('Y-m-d'));
+                        $novoPedido->setSituacao($situacao);
+        
+                        $novoPedido->atualizar();
+                        header('Location: ListaPedido');
+                    }
+                }
+            }
         }
     }
 
@@ -88,7 +151,7 @@ class PedidosController {
             $qntd = $_POST['qntd'];
             $pesoKg = $_POST['pesoKg'];
             $recebimento = $_POST['recebimento'];
-            $permissao = $_POST['permissao$permissao'];
+            $situacao = $_POST['situacao'];
 
             $dataRecebimentoObj = DateTime::createFromFormat('d/m/Y', $recebimento);
             $dataEntregaObj = clone $dataRecebimentoObj;
@@ -124,7 +187,7 @@ class PedidosController {
                 $novoPedido->setPesoKg($pesoKg);
                 $novoPedido->setRecebimento($dataRecebimentoObj->format('Y-m-d'));
                 $novoPedido->setEntregaLimite($dataEntregaObj->format('Y-m-d'));
-                $novoPedido->setPermissao($permissao);
+                $novoPedido->setSituacao($situacao);
 
                 $novoPedido->atualizar();
                 header('Location: ListaPedido');

@@ -9,6 +9,7 @@ class Usuario {
     private $cpf;
     private $dataNascimento;
     private $senha;
+    private $permissao;
 
     public function cadastrarUsuario() {
         try {
@@ -42,6 +43,14 @@ class Usuario {
         $sql->bindParam(':email', $email);
         $sql->execute();
         return $sql->fetchColumn() > 0;
+    }
+
+    public function verificarPermissao($email){
+        $conn = Conexao::conectar();
+        $sql = $conn->prepare("SELECT permissao FROM usuarios WHERE email = :email");
+        $sql->bindParam(':email', $email);
+        $sql->execute();
+        return $sql->fetchColumn();
     }
 
     public function getUserID($email) {
