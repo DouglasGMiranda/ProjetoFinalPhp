@@ -1,17 +1,18 @@
-<?php 
-print_r($_SESSION);
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Document</title>
+    <link rel="stylesheet" href="../../Assets/css/Style.css">
+    <link rel="stylesheet" href="/../../Assets/css/Style.css">
 </head>
 <body>
     <header>
         <div class="cabecalho">
-            <div class="logo">A nossa logo</div>
+            <div class="logo"><img src="./" alt="Logo"></div>
             <nav>
                 <ul>
                     <li><a href="Home">Home</a></li>
