@@ -72,16 +72,16 @@ class PedidosController {
 
             $permissao = $_SESSION['usuario']['permissao'];
           
-            if($permissao < 1){
+            if($permissao <= 0){
 
                 $pedido = new Pedido();
                 $pedido->setUser_id($user_id);
                 $pedido->listar();
             }
 
-            else{
-                $novoPedido = new Pedido();
-                $novoPedido->listarTudo();
+            elseif($permissao == 1){
+                $pedido = new Pedido();
+                $pedido->listarTudo();
             }
         }
 

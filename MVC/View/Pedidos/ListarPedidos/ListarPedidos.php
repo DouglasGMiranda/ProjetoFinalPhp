@@ -56,7 +56,10 @@ $pedidos = $PedidosController->listarPedido();
                 <th>Data de Recebimento</th>
                 <th>Data de Entrega</th>
                 <th>Status</th>
-                <th>Ações</th>
+                <?php if ($permissao == '1'): ?>
+                    <th>Ações</th>
+                <?php endif; ?>
+                
             </tr>
         </thead>
         <tbody>
@@ -70,19 +73,12 @@ $pedidos = $PedidosController->listarPedido();
                     <td><?= date('d/m/Y', strtotime($pedido['entrega-limite'])) ?></td>
                     <td><?= $pedido['situacao'] ? 'Entregue' : 'Pendente' ?></td>
                     
-                    <td>
-                        <?php 
-                        // Exibir botões de editar e apagar apenas para usuários com permissão adequada
-                        if ($permissao == '1') {
-                            echo '<a href="EditarPedidos?id=' . $pedido['pedido_id'] . '">Editar</a>';
-                            echo '<a href="index.php?url=Deletarpedido&id=' . $pedido['pedido_id'] . '" onclick="return confirm(\'Tem certeza que deseja deletar?\')">Deletar</a>';
-                        }
-
-                        else{
-                            echo 'Sem permissão';
-                        }
-                        ?>
-                    </td>
+                    <?php if ($permissao == '1'): ?>
+                        <td>
+                            <a href="EditarPedidos?id=<?= $pedido['pedido_id'] ?>">Editar</a>
+                            <a href="index.php?url=Deletarpedido&id=<?= $pedido['pedido_id'] ?>" onclick="return confirm('Tem certeza que deseja deletar?')">Deletar</a>
+                        </td>
+                    <?php endif; ?>     
                 </tr>
             <?php endforeach; ?>
         </tbody>
