@@ -1,4 +1,53 @@
+/* Estilos gerais */
+.body {
+    /*font-family: Arial, sans-serif;*/
+    margin: 0;
+    padding: 0;
+}
 
-header{
+.header {
+    width: 100%;
+    background-color: #f8f8f8;
+    padding: 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.cabecalho {
+    display: flex;
+    justify-content: flex-end; /* Alinha o conteúdo à direita */
     align-items: center;
+    padding: 0 20px;
+}
+
+.logo {
+    margin-right: auto; /* Empurra a logo para a esquerda */
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav li {
+    margin-left: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    padding: 5px 10px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+nav a:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+/* Ajuste da imagem de logo para fins de exemplo */
+.logo img {
+    height: 50px; /* Ajuste a altura da logo conforme necessário */
 }
