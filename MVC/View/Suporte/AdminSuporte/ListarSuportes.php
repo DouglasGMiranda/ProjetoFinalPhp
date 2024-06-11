@@ -53,8 +53,9 @@ $suportes = $SuporteController->listarSuporte();
                 </nav>
         </div>
     </header>
-    <h1>Lista de Suportes</h1>
-
+    <h1 class="h1">Lista de Suportes</h1>
+    <div class="container">
+    <div class="child">
     <table border="1">
         <thead>
             <tr>
@@ -74,12 +75,14 @@ $suportes = $SuporteController->listarSuporte();
                     <td><?= $suporte['emailUser'] ?? '' ?></td>
                     <td><?= $suporte['Descricao'] ?? '' ?></td>
                     <td>
-                        <button onclick="location.href='EditarSuporte&id=<?= $suporte['suporteID'] ?>';">Editar</button>
-                        <button onclick="if(confirm('Tem certeza que deseja deletar?')) { location.href='DeletarSuporte&id=<?= $suporte['suporteID'] ?>'; }">Excluir</button>
+                        <button class="botao" onclick="location.href='EditarSuporte&id=<?= $suporte['suporteID'] ?>';">Editar</button>
+                        <button class="botao" onclick="if(confirm('Tem certeza que deseja deletar?')) { location.href='DeletarSuporte&id=<?= $suporte['suporteID'] ?>'; }">Excluir</button>
                     </td>
                 </tr>
         </tbody>
     </table>
+    </div>
+    </div>
     <footer>
         <div class="container">
             <p>&copy; 2024 Todos os direitos reservados. D&G Logística.</p>

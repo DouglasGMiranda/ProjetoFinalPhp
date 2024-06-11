@@ -43,23 +43,25 @@ $permissao = $_SESSION['usuario']['permissao'];
             </nav>
         </div>
     </header>
-    <h1>Cadastrar Pedidos</h1>
+    <h1 class="h1">Cadastrar Pedidos</h1>
+    <div class="login-cadastro">
+    <div class="square-pedido">
+        <form method="POST" action="index.php?url=CadastrarPedidos">
+            <label>Descrição do Produto:</label>
+            <input type="text" name="descricao" id="descricao" placeholder="Descrição do produto" maxlength="200"><br><br>
 
-    <form method="POST" action="index.php?url=CadastrarPedidos">
-        <label>Descrição do Produto:</label>
-        <input type="text" name="descricao" id="descricao" placeholder="Descrição do produto" maxlength="200"><br><br>
+            <label>Quantidade:</label>
+            <input type="text" name="qntd" id="qntd" placeholder="Quantidade"><br><br>
 
-        <label>Quantidade:</label>
-        <input type="text" name="qntd" id="qntd" placeholder="Quantidade"><br><br>
+            <label>Peso:</label>
+            <input type="text" name="peso-kg" id="peso-kg" placeholder="Peso(0,00kg)" maxlength="8"><br><br>
 
-        <label>Peso:</label>
-        <input type="text" name="peso-kg" id="peso-kg" placeholder="Peso(0,00kg)" maxlength="8"><br><br>
+            <label>Data de Recebimento:</label>
+            <input type="text" name="recebimento" id="recebimento" placeholder="DD/MM/AAAA" maxlength="10"><br><br>
 
-        <label>Data de Recebimento:</label>
-        <input type="text" name="recebimento" id="recebimento" placeholder="DD/MM/AAAA" maxlength="10"><br><br>
-
-        <button type="submit" name="cadastrarPedidos">Cadastrar</button>
-
+            <button type="submit" name="cadastrarPedidos" class="botao">Cadastrar</button>
+            </div>
+        </div>
         <?php 
         if (!empty($erros)) {
             foreach ($erros as $error) {

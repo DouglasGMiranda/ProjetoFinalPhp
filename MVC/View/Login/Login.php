@@ -41,16 +41,18 @@ unset($_SESSION['erros']);
         </nav>
     </div>
 </header>
-<h1>Login</h1>
-<div class="quadrado">
-    <form method="POST" action="index.php?url=LOGAR">
-        <label>Email:</label>
-        <input type="text" name="email" id="email" placeholder="email@gmail.com"><br><br>
+<h1 class="h1">Login</h1>
+<div class="login-cadastro">
+    <div class="square">
+        <form method="POST" action="index.php?url=LOGAR">
+            <label>Email:</label>
+            <input type="text" name="email" id="email" placeholder="email@gmail.com"><br><br>
 
-        <label>Senha:</label>
-        <input type="password" name="senha" id="senha" placeholder="Digite sua senha"><br><br>
+            <label>Senha:</label>
+            <input type="password" name="senha" id="senha" placeholder="Digite sua senha"><br><br>
 
-        <button type="submit" name="logar" class="botao">Entrar</button>
+            <button type="submit" name="logar" class="botao">Entrar</button>
+    </div>
 </div>
     <?php 
     // Exibir mensagens de erro

@@ -46,20 +46,22 @@ $permissao = isset($_SESSION['usuario']['permissao']) ? $_SESSION['usuario']['pe
             </nav>
         </div>
     </header>
-    <h1>Suporte</h1>
+    <h1 class="h1">Suporte</h1>
+    <div class="login-cadastro">
+        <div class="square-cadastro">
+            <form method="POST" action="index.php?url=CadastrarSuporte">
+                <label>CPF registrado:</label>
+                <input type="text" name="cpfUser" id="cpfUser" placeholder="CPF" maxlength="11"><br><br>
 
-    <form method="POST" action="index.php?url=CadastrarSuporte">
-        <label>CPF registrado:</label>
-        <input type="text" name="cpfUser" id="cpfUser" placeholder="CPF" maxlength="11"><br><br>
+                <label>Email registrado:</label>
+                <input type="text" name="emailUser" id="emailUser" placeholder="Email@email.com" maxlength="120"><br><br>
 
-        <label>Email registrado:</label>
-        <input type="text" name="emailUser" id="emailUser" placeholder="Email@email.com" maxlength="120"><br><br>
+                <label>Descrição do problema:</label>
+                <textarea name="Descricao" id="Descricao" placeholder="Descreva o problema" maxlength="300"></textarea><br><br>
 
-        <label>Descrição do problema:</label>
-        <textarea name="Descricao" id="Descricao" placeholder="Descreva o problema" maxlength="300"></textarea><br><br>
-
-        <button type="submit" name="enviarSuporte">Enviar</button>
-
+                <button type="submit" name="enviarSuporte" class="botao">Enviar</button>
+        </div>
+    </div>
         <?php 
             if (!empty($erros)) {
                 foreach ($erros as $error) {
