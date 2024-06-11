@@ -63,9 +63,8 @@ class Pedido {
     public function atualizar() {
         try {
             $conn = Conexao::conectar();
-            $sql = $conn->prepare("UPDATE logistica.pedidos SET descricao = :descricao, qntd = :qntd, 'peso-kg' = :pesoKg, recebimento = :recebimento, 'entrega-limite' = :entregaLimite, situacao = :situacao WHERE pedido_id = :pedido_id");
-
-            $sql->bindValue(':idLogistica', $this->getPedido_id());
+            $sql = $conn->prepare("UPDATE logistica.pedidos SET descricao = :descricao, qntd = :qntd, `peso-kg`  = :pesoKg, recebimento = :recebimento, `entrega-limite` = :entregaLimite, situacao = :situacao WHERE pedido_id = :pedido_id");
+            $sql->bindValue(':pedido_id', $this->getPedido_id());
             $sql->bindValue(':descricao', $this->getDescricao());
             $sql->bindValue(':qntd', $this->getQntd());
             $sql->bindValue(':pesoKg', $this->getPesoKg());
@@ -74,6 +73,7 @@ class Pedido {
             $sql->bindValue(':situacao', $this->getSituacao());
 
             $sql->execute();
+            header('Location: ListarPedidos');
         } catch (PDOException $erro) {
             echo "Erro ao atualizar pedido! " . $erro->getMessage();
         }

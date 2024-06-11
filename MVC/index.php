@@ -49,18 +49,18 @@ elseif ($url == 'LISTARPEDIDOS') {
     }
     require_once(__DIR__ . '/View/Pedidos/ListarPedidos/ListarPedidos.php');
 }
-elseif ($url == 'EDITARPEDIDOS') {
+
+elseif ($url == 'EDITARPEDIDO') {
     if (!isset($_SESSION['usuario'])) {
         header('Location: Login');
         exit();
-    }
-    elseif(isset($_GET['id'])) {
-        // Obtém o valor da variável
+    } 
+    else {
         $id = $_GET['id'];
         require_once(__DIR__ . '/View/Pedidos/EditarPedidos/EditarPedidos.php');
     }
 }
-elseif ($url == 'ATUALIZARPEDIDOS') {
+elseif ($url == 'ATUALIZARPEDIDO') {
     require_once(__DIR__ . '/Controller/PedidosController.php');
     $PedidosController = new PedidosController();
     $PedidosController->atualizarPedido();

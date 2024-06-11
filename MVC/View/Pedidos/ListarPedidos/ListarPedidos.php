@@ -75,8 +75,8 @@ $pedidos = $PedidosController->listarPedido();
                     
                     <?php if ($permissao == '1'): ?>
                         <td>
-                            <a href="EditarPedidos?id=<?= $pedido['pedido_id'] ?>">Editar</a>
-                            <a href="index.php?url=Deletarpedido&id=<?= $pedido['pedido_id'] ?>" onclick="return confirm('Tem certeza que deseja deletar?')">Deletar</a>
+                        <button onclick="location.href='EditarPedido&id=<?= $pedido['pedido_id'] ?>';">Editar</button>
+                        <button onclick="location.href='ExcluirPedido&id=<?= $pedido['pedido_id'] ?>';">Excluir</button>
                         </td>
                     <?php endif; ?>     
                 </tr>
