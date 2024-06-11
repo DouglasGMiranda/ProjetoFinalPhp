@@ -31,10 +31,11 @@ $suportes = $SuporteController->listarSuporte();
 <body>
     <header>
         <div class="cabecalho">
-            <div class="logo">A nossa logo</div>
+            <div class="logo">D&G</div>
                 <nav>
                     <ul>
                         <li><a href="Home">Home</a></li>
+                        <li><a href="Sobre">Sobre</a></li>
                         <li><a href="ListarPedidos">Lista de Pedidos</a></li>
                         <li><a href="CadastroPedido">Cadastro de Pedidos</a></li>
                         <?php if ($permissao == 1): ?>
@@ -78,5 +79,10 @@ $suportes = $SuporteController->listarSuporte();
                 </tr>
         </tbody>
     </table>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Todos os direitos reservados. D&G Logística.</p>
+        </div>
+    </footer>
 </body>
 </html>

@@ -1,53 +1,216 @@
-/* Estilos gerais */
-.body {
-    /*font-family: Arial, sans-serif;*/
+/*CSS GERAL*/
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
-.header {
-    width: 100%;
-    background-color: #f8f8f8;
-    padding: 10px 0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+.cabecalho{
+    text-align: center;
+}
+
+.logo{
+    color: #fff;
+}
+
+
+/*MENU SITE*/
+header {
+    background-color: #120b3b;
+    padding: 10px 0; 
 }
 
 .cabecalho {
     display: flex;
-    justify-content: flex-end; /* Alinha o conteúdo à direita */
     align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 0 20px;
 }
 
-.logo {
-    margin-right: auto; /* Empurra a logo para a esquerda */
+.logo img {
+    height: 50px;
 }
 
 nav ul {
     list-style: none;
-    margin: 0;
-    padding: 0;
     display: flex;
+    gap: 20px;
 }
 
-nav li {
-    margin-left: 20px;
+nav ul li {
+    position: relative;
 }
 
-nav a {
+nav ul li a {
     text-decoration: none;
-    color: #333;
-    font-weight: bold;
-    padding: 5px 10px;
-    transition: background-color 0.3s, color 0.3s;
+    color: #fff;
+    padding: 10px 15px;
+    transition: background 0.3s;
 }
 
-nav a:hover {
-    background-color: #333;
+nav ul li a:hover{
+    background-color: #575757;
+    border-radius: 4px;
+}
+
+
+@media (max-width: 768px) {
+    .cabecalho {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav ul {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    nav ul li {
+        width: 100%;
+    }
+
+    nav ul li a {
+        display: block;
+        width: 100%;
+    }
+}
+
+
+/*PAGINA COM CONTEUDO*/
+
+main{
+    color: #000000;
+    width: 100%;
+    text-align: center;
+    background-color: #616161;
+    padding: 20px;
+}
+
+.texto{
+    margin-top: 50px;
+}
+
+.sobre {
+    padding: 20px;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.quadrado {
+    color: #fff;
+    height: 200px;
+    border-radius: 12px;
+    width: 16%; /* Defina a largura da div como 100% */
+    text-align: left; /* Centralize o conteúdo dentro da div */
+    background-color: #120b3b; /* Cor de fundo apenas para visualização */
+    padding: 20px; /* Adicione algum preenchimento para espaçamento interno */
+    margin-top: 50px; /* Apenas para afastar a div do topo */
+}
+
+
+@media (max-width: 600px) {
+    .quadrado {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+.nos h1, .conteudo-home h1{
+    color: #ffffff;
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+}
+
+.conteudo-home{
+    color: #fff;
+    text-align: left; /* Centralize o conteúdo dentro da div */
+    background-color: #616161; /* Cor de fundo apenas para visualização */
+    padding: 50px; /* Adicione algum preenchimento para espaçamento interno */
+    padding-left: 20%;
+    padding-right: 20%;
+}
+
+.nos{
+    color: #fff;
+    text-align: left; /* Centralize o conteúdo dentro da div */
+    background-color: #120b3b; /* Cor de fundo apenas para visualização */
+    padding: 50px; /* Adicione algum preenchimento para espaçamento interno */
+    padding-left: 20%;
+    padding-right: 20%;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+
+/*TABELAS*/
+
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.child{
+    background-color: #fff;
+    padding: 15px;
+
+}
+
+.centered-table td, th{
+    padding: 12px 15px; /* Espaçamento interno (padding) */
+    border: 0px solid #dddddd; /* Borda das células */
+}
+
+.Listas{
+    text-align: center;
+    padding: 50px; 
+}
+
+th{
+    background-color: #120b3b;
     color: #fff;
 }
 
-/* Ajuste da imagem de logo para fins de exemplo */
-.logo img {
-    height: 50px; /* Ajuste a altura da logo conforme necessário */
+td{
+    color: #fff;
+    background-color: #333;
 }
+
+button{
+    border: none;
+    border-radius: 5px;
+    padding: 7px;
+    color: #fff
+}
+
+.editar, .botao{
+    background-color: #120b3bd3;
+}
+
+.excluir{
+    background-color: #ff5100e0;
+}
+
