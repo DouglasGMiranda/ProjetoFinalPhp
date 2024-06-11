@@ -36,6 +36,7 @@ $usuario = $userController->listarUsuarios();
             <nav>
                 <ul>
                     <li><a href="Home">Home</a></li>
+                    <li><a href="Sobre">Sobre</a></li>
                     <li><a href="ListarPedidos">Lista de Pedidos</a></li>
                     <li><a href="CadastroPedido">Cadastro de Pedidos</a></li>
                     <?php if ($permissao == 1): ?>

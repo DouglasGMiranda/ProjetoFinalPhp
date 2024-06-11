@@ -1,16 +1,13 @@
 <?php 
-
-$permissao = $_SESSION['usuario']['permissao'];
-
+$permissao = isset($_SESSION['usuario']['permissao']) ? $_SESSION['usuario']['permissao'] : null;
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Document</title>
-    <link rel="stylesheet" href="/../../Trabalho/ProjetoFinalPhp/MVC/Assets/css/styles.css">
+    <link rel="stylesheet" href="/../../PROJETOFINALPHP/MVC/Assets/css/styles.css">
 </head>
 <body>
     <header>
@@ -18,10 +15,11 @@ $permissao = $_SESSION['usuario']['permissao'];
             <div class="logo"><img src="./" alt="Logo"></div>
             <nav>
                 <ul>
-                    <li><a href="Home">Home</a></li>
+                    <li><a href="Home" class="active">Home</a></li>
+                    <li><a href="Sobre">Sobre</a></li>
                     <li><a href="ListarPedidos">Lista de Pedidos</a></li>
                     <li><a href="CadastroPedido">Cadastro de Pedidos</a></li>
-                    <?php if ($permissao == 1): ?>
+                    <?php if ($permissao === 1): ?>
                         <li><a href="Usuarios">Usuários</a></li>
                     <?php endif; ?>
                     <li><a href="Suporte">Suporte</a></li>
@@ -35,6 +33,9 @@ $permissao = $_SESSION['usuario']['permissao'];
             </nav>
         </div>
     </header>
+    <main>
+        <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem, consequuntur deserunt accusantium maxime repellendus mollitia non fugiat explicabo reiciendis eaque dolore alias perferendis saepe laboriosam nobis numquam placeat tempora pariatur!</h1>
+    </main>
 <body>
     
 </body>
