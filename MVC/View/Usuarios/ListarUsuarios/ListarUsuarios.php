@@ -6,11 +6,7 @@ if (!isset($_SESSION['usuario'])) {
     exit();
 }
 
-if (isset($_SESSION['usuario']) && isset($_SESSION['usuario']['permissao'])) {
-    $permissao = $_SESSION['usuario']['permissao'];
-} else {
-    $permissao = null;
-}
+$permissao = $_SESSION['usuario']['permissao'];
 
 if ($permissao != 1) {
     print"script>alert('Você não tem permissão para acessar essa página!');</script>";

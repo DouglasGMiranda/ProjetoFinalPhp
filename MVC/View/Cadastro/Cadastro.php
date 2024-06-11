@@ -1,13 +1,17 @@
 <?php 
 include_once(__DIR__ . '/../../config.php');
 include_once(__DIR__ . '/../../Controller/UserController.php');
+
+// Verificar se a sessão já foi iniciada antes de chamar session_start()
+if (session_status() == PHP_SESSION_NONE) {
+    session_start(); // Iniciar a sessão
+}
+
 $erros = $_SESSION['erros'] ?? [];
 unset($_SESSION['erros']);
-if (isset($_SESSION['usuario']) && isset($_SESSION['usuario']['permissao'])) {
-    $permissao = $_SESSION['usuario']['permissao'];
-} else {
-    $permissao = null;
-}
+
+// Verificar se a chave 'usuario' está definida na sessão antes de acessá-la
+$permissao = isset($_SESSION['usuario']['permissao']) ? $_SESSION['usuario']['permissao'] : null;
 ?>
 
 <!DOCTYPE html>
@@ -15,6 +19,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['usuario']['permissao'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/../../PROJETOFINALPHP/MVC/Assets/css/styles.css">
     <title>Cadastro</title>
 </head>
 
@@ -33,13 +38,14 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['usuario']['permissao'])) {
 <body>
     <header>
         <div class="cabecalho">
-            <div class="logo">A nossa logo</div>
+            <div class="logo">D&G</div>
             <nav>
                 <ul>
                     <li><a href="Home">Home</a></li>
+                    <li><a href="Sobre">Sobre</a></li>
                     <li><a href="ListarPedidos">Lista de Pedidos</a></li>
                     <li><a href="CadastroPedido">Cadastro de Pedidos</a></li>
-                    <?php if ($permissao == 1): ?>
+                    <?php if ($permissao === 1): ?>
                         <li><a href="Usuarios">Usuários</a></li>
                     <?php endif; ?>
                     <li><a href="Suporte">Suporte</a></li>
@@ -75,7 +81,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['usuario']['permissao'])) {
         <label>Confirme sua senha:</label>
         <input type="password" name="confSenha" id="confSenha" placeholder="Confirme sua senha"><br><br>
 
-        <button type="submit" name="cadastrarUsu">Cadastrar</button>
+        <button type="submit" name="cadastrarUsu" class="botao">Cadastrar</button>
 
         <?php 
         // Exibir mensagens de erro
