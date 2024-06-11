@@ -37,6 +37,7 @@ $pedidos = $PedidosController->listarPedido();
                     <?php if ($permissao == 1): ?>
                         <li><a href="Usuarios">Usuários</a></li>
                     <?php endif; ?>
+                    <li><a href="Suporte">Suporte</a></li>
                     <?php if (isset($_SESSION['usuario'])): ?>
                         <li><a href="index.php?url=LOGOUT">Logout</a></li>
                     <?php else: ?>

@@ -45,13 +45,14 @@ unset($_SESSION['erros']);
                         <?php if ($permissao == 1): ?>
                             <li><a href="Usuarios">Usuários</a></li>
                         <?php endif; ?>
+                        <li><a href="Suporte">Suporte</a></li>
                         <?php if (isset($_SESSION['usuario'])): ?>
                             <li><a href="index.php?url=LOGOUT">Logout</a></li>
                         <?php else: ?>
                             <li><a href="Login">Login</a></li>
                             <li><a href="Cadastro">Cadastro</a></li>
                         <?php endif; ?>
-                </ul>
+                    </ul>
             </nav>
         </div>
     </header>
