@@ -1,6 +1,10 @@
 <?php 
 include_once(__DIR__ . '/../../../config.php');
-$permissao = $_SESSION['usuario']['permissao'];
+if (isset($_SESSION['usuario']) && isset($_SESSION['usuario']['permissao'])) {
+    $permissao = $_SESSION['usuario']['permissao'];
+} else {
+    $permissao = null;
+}
 
 if ($permissao == 0) {
     header('Location: Home');
