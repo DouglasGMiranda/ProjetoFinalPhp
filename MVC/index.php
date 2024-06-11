@@ -113,6 +113,37 @@ elseif ($url == 'DELETARUSUARIO') {
         $usuarioController->excluirUsuario($_GET['id']);
     }    
 }
+elseif ($url == 'SUPORTE') {
+    $permissao = $_SESSION['usuario']['permissao'];
+    if ($permissao == 1){
+        require_once(__DIR__ . '/View/Suporte/AdminSuporte/ListarSuportes.php');
+    }
+    else{
+        require_once(__DIR__ . '/View/Suporte/PedirSuporte.php');
+    }
+}
+
+elseif ($url == 'CADASTRARSUPORTE') {
+    require_once(__DIR__ . '/Controller/SuporteController.php');
+    $suporteController = new SuporteController();
+    $suporteController->cadastrarSuporte();
+}
+
+elseif($url == 'DELETARSUPORTE'){
+    $permissao = $_SESSION['usuario']['permissao'];
+    if ($permissao == 1){
+        require_once(__DIR__ . '/Controller/SuporteController.php');
+        $suporteController = new SuporteController();
+        $suporteController->excluirSuporte($_GET['id']);
+    }
+    else{
+        require_once(__DIR__ . '/View/Suporte/PedirSuporte.php');
+    }
+}
+
+elseif ($url == 'ATUALIZARSUPORTE'){
+
+}
 else {
     echo "Página não encontrada!";
 }

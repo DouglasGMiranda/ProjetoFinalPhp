@@ -106,6 +106,14 @@ class Usuario {
         return $sql->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function buscarUsuarioPorEmail($email) {
+        $conn = Conexao::conectar();
+        $sql = $conn->prepare("SELECT * FROM usuarios WHERE email = :email");
+        $sql->bindParam(':email', $email);
+        $sql->execute();
+        return $sql->fetch(PDO::FETCH_ASSOC);
+    }
+
     public function deletarUsuario($id) {
         try {
             $conn = Conexao::conectar();
