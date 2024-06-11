@@ -66,6 +66,52 @@ class SuporteController{
         $this->processa('D', $id, null, null, null);
     }
 
+    public function buscarSuporte($id){
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $cpfUser = $_POST['cpfUser'];
+            $emailUser = $_POST['emailUser'];
+            $descricao = $_POST['Descricao'];
+            $erros = [];
+
+            if (empty($cpfUser) || !preg_match("/^\d{11}$/", $cpfUser)) {
+                $erros[] = "CPF deve ter 11 numeros.";
+            }
+            else{
+                $usuario = new Usuario();
+                $usuario->verificarCpf($cpfUser);
+                if ($usuario->verificarCpf($cpfUser) == false) {
+                    $erros[] = "CPF não cadastrado.";
+                }
+            }
+
+            if (empty($emailUser) || !filter_var($emailUser, FILTER_VALIDATE_EMAIL)) {
+                $erros[] = "Email inválido.";
+            }
+            else{
+                $usuario = new Usuario();
+                $usuario->verificarEmail($emailUser);
+                if ($usuario->verificarEmail($emailUser) == false) {
+                    $erros[] = "Email não cadastrado.";
+                }
+            }
+
+            if (empty($descricao) || strlen($descricao) > 300) {
+                $erros[] = "A descrição do problema deve ter até 300 caracteres e não pode estar vazia.";
+            }
+
+            if (!empty($erros)) {
+                $_SESSION['erros'] = $erros;
+                header('Location: Suporte');
+                exit();
+            } 
+            else {
+                $suporte = $this->processa('U', $id, $cpfUser, $emailUser, $descricao);
+                return $suporte;
+            }
+        }
+    }
+
     public function processa($acao, $SuporteID, $cpfUser, $emailUser, $descricao){
         if ($acao == 'C') {
             $Suporte = new Suporte();
@@ -81,14 +127,15 @@ class SuporteController{
             return $Suporte->listarSuporte();
         }
 
-        /*if ($acao == 'U') {
+        if ($acao == 'U') {
+
             $Suporte = new Suporte();
             $Suporte->setCpfUser($cpfUser);
             $Suporte->setEmailUser($emailUser);
             $Suporte->setDescricao($descricao);
 
             $Suporte->atualizarSuporte();
-        }*/
+        }
 
         if ($acao == 'D') {
             $Suporte = new Suporte();

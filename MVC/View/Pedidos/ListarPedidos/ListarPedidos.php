@@ -6,7 +6,11 @@ if (!isset($_SESSION['usuario'])) {
     exit();
 }
 
-$permissao = $_SESSION['usuario']['permissao']; 
+if (isset($_SESSION['usuario']) && isset($_SESSION['usuario']['permissao'])) {
+    $permissao = $_SESSION['usuario']['permissao'];
+} else {
+    $permissao = null;
+} 
 
 include_once(__DIR__ . '/../../../Controller/PedidosController.php');
 $PedidosController = new PedidosController();

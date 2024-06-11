@@ -51,6 +51,22 @@ class Suporte{
         }
     }
 
+    public function atualizarSuporte(){
+        try {
+            $conn = Conexao::conectar();
+            $sql = $conn->prepare("UPDATE suporte SET CpfUser = :cpfUser, EmailUser = :emailUser, Descricao = :descricao WHERE SuporteID = :id");
+            $sql->bindValue(':id', $this->getIdSuporte());
+            $sql->bindValue(':cpfUser', $this->getCpfUser());
+            $sql->bindValue(':emailUser', $this->getEmailUser());
+            $sql->bindValue(':descricao', $this->getDescricao());
+            $sql->execute();
+            print('<script>alert("Suporte atualizado com sucesso!");</script>');
+            print('<script>window.location.href = "index.php?url=SUPORTE";</script>');
+        } catch (PDOException $erro) {
+            echo "Erro ao atualizar suporte! " . $erro->getMessage();
+        }
+    }
+
     //GETTERS E SETTERS
     public function getIdSuporte(){
         return $this->idSuporte;

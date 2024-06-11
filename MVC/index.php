@@ -141,8 +141,15 @@ elseif($url == 'DELETARSUPORTE'){
     }
 }
 
-elseif ($url == 'ATUALIZARSUPORTE'){
-
+elseif ($url == 'EDITARSUPORTE'){
+    $permissao = $_SESSION['usuario']['permissao'];
+    if ($permissao == 1){
+        $id = $_GET['id'];
+        require_once(__DIR__ . '/View/Suporte/AdminSuporte/EditarSuporte.php');
+    }
+    else{
+        require_once(__DIR__ . '/View/Suporte/PedirSuporte.php');
+    }
 }
 else {
     echo "Página não encontrada!";

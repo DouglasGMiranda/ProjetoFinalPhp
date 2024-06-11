@@ -2,6 +2,11 @@
 include_once(__DIR__ . '/../../config.php');
 include_once(__DIR__ . '/../../Controller/SuporteController.php');
 
+if (isset($_SESSION['usuario']) && isset($_SESSION['usuario']['permissao'])) {
+    $permissao = $_SESSION['usuario']['permissao'];
+} else {
+    $permissao = null;
+}
 $erros = $_SESSION['erros'] ?? [];
 unset($_SESSION['erros']);
 ?>

@@ -6,7 +6,11 @@ if (!isset($_SESSION['usuario'])) {
     exit();
 }
 
-$permissao = $_SESSION['usuario']['permissao'];
+if (isset($_SESSION['usuario']) && isset($_SESSION['usuario']['permissao'])) {
+    $permissao = $_SESSION['usuario']['permissao'];
+} else {
+    $permissao = null;
+}
 if($permissao != 1){
     header('Location: PedirSuporte');
     exit();
@@ -63,10 +67,10 @@ $suportes = $SuporteController->listarSuporte();
         <tbody>
             <?php foreach ($suportes as $suporte) ?>
                 <tr>
-                    <td><?= $suporte['suporteID'] ?></td>
-                    <td><?= $suporte['CpfUser'] ?></td>
-                    <td><?= $suporte['emailUser'] ?></td>
-                    <td><?= $suporte['Descricao'] ?></td>
+                    <td><?= $suporte['suporteID'] ?? '' ?></td>
+                    <td><?= $suporte['CpfUser'] ?? '' ?></td>
+                    <td><?= $suporte['emailUser'] ?? '' ?></td>
+                    <td><?= $suporte['Descricao'] ?? '' ?></td>
                     <td>
                         <button onclick="location.href='EditarSuporte&id=<?= $suporte['suporteID'] ?>';">Editar</button>
                         <button onclick="if(confirm('Tem certeza que deseja deletar?')) { location.href='DeletarSuporte&id=<?= $suporte['suporteID'] ?>'; }">Excluir</button>

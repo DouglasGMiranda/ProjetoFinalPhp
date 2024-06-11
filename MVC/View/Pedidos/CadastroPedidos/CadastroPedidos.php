@@ -8,7 +8,11 @@ if (!isset($_SESSION['usuario'])) {
 include_once(__DIR__ . '/../../../Controller/PedidosController.php');
 $erros = $_SESSION['erros'] ?? [];
 unset($_SESSION['erros']);
-$permissao = $_SESSION['usuario']['permissao'];
+if (isset($_SESSION['usuario']) && isset($_SESSION['usuario']['permissao'])) {
+    $permissao = $_SESSION['usuario']['permissao'];
+} else {
+    $permissao = null;
+}
 ?>
 
 <!DOCTYPE html>
