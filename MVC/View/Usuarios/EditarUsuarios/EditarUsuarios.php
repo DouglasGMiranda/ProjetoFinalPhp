@@ -32,6 +32,7 @@ else{
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/../../PROJETOFINALPHP/MVC/Assets/css/styles.css">
     <title>Editar Usuario</title>
 </head>
 <script>
@@ -47,7 +48,7 @@ else{
 <body>
     <header>
         <div class="cabecalho">
-            <div class="logo">A nossa logo</div>
+            <div class="logo">D&G</div>
                 <nav>
                     <ul>
                         <li><a href="Home">Home</a></li>
@@ -104,5 +105,10 @@ else{
             }
         ?>
     </form>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Todos os direitos reservados. D&G Logística.</p>
+        </div>
+    </footer>
 </body>
 </html>

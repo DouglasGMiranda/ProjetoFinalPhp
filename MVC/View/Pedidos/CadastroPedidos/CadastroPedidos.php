@@ -17,15 +17,16 @@ $permissao = $_SESSION['usuario']['permissao'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Pedidos</title>
-    <link rel="stylesheet" href="../../../Assets/Style.css">
+    <link rel="stylesheet" href="/../../PROJETOFINALPHP/MVC/Assets/css/styles.css">
 </head>
 <body>
     <header>
         <div class="cabecalho">
-            <div class="logo">A nossa logo</div>
+            <div class="logo">D&G</div>
             <nav>
                 <ul>
                     <li><a href="Home">Home</a></li>
+                    <li><a href="Sobre">Sobre</a></li>
                     <li><a href="ListarPedidos">Lista de Pedidos</a></li>
                     <li><a href="CadastroPedido">Cadastro de Pedidos</a></li>
                     <?php if ($permissao == 1): ?>
@@ -67,5 +68,10 @@ $permissao = $_SESSION['usuario']['permissao'];
         }
         ?>
     </form>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Todos os direitos reservados. D&G Logística.</p>
+        </div>
+    </footer>
 </body>
 </html>

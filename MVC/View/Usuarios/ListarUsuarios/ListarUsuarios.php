@@ -27,12 +27,13 @@ $usuario = $userController->listarUsuarios();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/../../PROJETOFINALPHP/MVC/Assets/css/styles.css">
     <title>Lista de Usuarios</title>
 </head>
-<body>
+<body class="listar">
     <header>
         <div class="cabecalho">
-            <div class="logo">A nossa logo</div>
+            <div class="logo">D&G</div>
             <nav>
                 <ul>
                     <li><a href="Home">Home</a></li>
@@ -53,9 +54,10 @@ $usuario = $userController->listarUsuarios();
             </nav>
         </div>
     </header>
-    <h1>Lista de Usuarios</h1>
-
-    <table border="1">
+    <h1 class="Listas">Lista de Usuarios</h1>
+<div class="container">
+    <div class="child">
+    <table border="1" class="centered-table">
         <thead>
             <tr>
                 <th>ID</th>
@@ -68,6 +70,7 @@ $usuario = $userController->listarUsuarios();
                 <th>Ações</th>
             </tr>
         </thead>
+    </div>
         <tbody>
             <?php foreach($usuario as $usuarios): ?>
                 <tr>
@@ -79,13 +82,18 @@ $usuario = $userController->listarUsuarios();
                     <td><?= $usuarios['senha'] ?></td>
                     <td><?= $usuarios['permissao'] ?></td>
                     <td>
-                        <button onclick="location.href='EditarUsuario&id=<?= $usuarios['user_id'] ?>';"> Editar</button>
-                        <button onclick="if(confirm('Tem certeza que deseja deletar?')) { location.href='DeletarUsuario&id=<?= $usuarios['user_id'] ?>'; }">Excluir</button>
+                        <button class="editar" onclick="location.href='EditarUsuario&id=<?= $usuarios['user_id'] ?>';"> Editar</button>
+                        <button class="excluir" onclick="if(confirm('Tem certeza que deseja deletar?')) { location.href='DeletarUsuario&id=<?= $usuarios['user_id'] ?>'; }">Excluir</button>
                     </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
-    
+    </div>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Todos os direitos reservados. D&G Logística.</p>
+        </div>
+    </footer>
 </body>
 </html>

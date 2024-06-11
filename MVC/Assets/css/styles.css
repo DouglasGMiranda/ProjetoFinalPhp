@@ -10,6 +10,14 @@ body {
     color: #333;
 }
 
+.cabecalho{
+    text-align: center;
+}
+
+.logo{
+    color: #fff;
+}
+
 
 /*MENU SITE*/
 header {
@@ -117,12 +125,22 @@ main{
     }
 }
 
-.nos h1{
+.nos h1, .conteudo-home h1{
     color: #ffffff;
     width: 100%;
-    text-align: center; 
+    text-align: center;
     padding: 20px;
 }
+
+.conteudo-home{
+    color: #fff;
+    text-align: left; /* Centralize o conteúdo dentro da div */
+    background-color: #616161; /* Cor de fundo apenas para visualização */
+    padding: 50px; /* Adicione algum preenchimento para espaçamento interno */
+    padding-left: 20%;
+    padding-right: 20%;
+}
+
 .nos{
     color: #fff;
     text-align: left; /* Centralize o conteúdo dentro da div */
@@ -131,3 +149,68 @@ main{
     padding-left: 20%;
     padding-right: 20%;
 }
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+
+/*TABELAS*/
+
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.child{
+    background-color: #fff;
+    padding: 15px;
+
+}
+
+.centered-table td, th{
+    padding: 12px 15px; /* Espaçamento interno (padding) */
+    border: 0px solid #dddddd; /* Borda das células */
+}
+
+.Listas{
+    text-align: center;
+    padding: 50px; 
+}
+
+th{
+    background-color: #120b3b;
+    color: #fff;
+}
+
+td{
+    color: #fff;
+    background-color: #333;
+}
+
+button{
+    border: none;
+    border-radius: 5px;
+    padding: 7px;
+    color: #fff
+}
+
+.editar, .botao{
+    background-color: #120b3bd3;
+}
+
+.excluir{
+    background-color: #ff5100e0;
+}
+

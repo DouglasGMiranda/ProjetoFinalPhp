@@ -38,7 +38,7 @@ $permissao = isset($_SESSION['usuario']['permissao']) ? $_SESSION['usuario']['pe
 <body>
     <header>
         <div class="cabecalho">
-            <div class="logo">A nossa logo</div>
+            <div class="logo">D&G</div>
             <nav>
                 <ul>
                     <li><a href="Home">Home</a></li>
@@ -81,7 +81,7 @@ $permissao = isset($_SESSION['usuario']['permissao']) ? $_SESSION['usuario']['pe
         <label>Confirme sua senha:</label>
         <input type="password" name="confSenha" id="confSenha" placeholder="Confirme sua senha"><br><br>
 
-        <button type="submit" name="cadastrarUsu">Cadastrar</button>
+        <button type="submit" name="cadastrarUsu" class="botao">Cadastrar</button>
 
         <?php 
         // Exibir mensagens de erro

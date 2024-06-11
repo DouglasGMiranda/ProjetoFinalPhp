@@ -20,7 +20,7 @@ unset($_SESSION['erros']);
 <body>
 <header>
     <div class="cabecalho">
-        <div class="logo"><img src="./" alt="Logo"></div>
+        <div class="logo">D&G</div>
         <nav>
             <ul>
                 <li><a href="Home" class="active">Home</a></li>
@@ -42,16 +42,16 @@ unset($_SESSION['erros']);
     </div>
 </header>
 <h1>Login</h1>
+<div class="quadrado">
+    <form method="POST" action="index.php?url=LOGAR">
+        <label>Email:</label>
+        <input type="text" name="email" id="email" placeholder="email@gmail.com"><br><br>
 
-<form method="POST" action="index.php?url=LOGAR">
-    <label>Email:</label>
-    <input type="text" name="email" id="email" placeholder="email@gmail.com"><br><br>
+        <label>Senha:</label>
+        <input type="password" name="senha" id="senha" placeholder="Digite sua senha"><br><br>
 
-    <label>Senha:</label>
-    <input type="password" name="senha" id="senha" placeholder="Digite sua senha"><br><br>
-
-    <button type="submit" name="logar">Entrar</button>
-
+        <button type="submit" name="logar" class="botao">Entrar</button>
+</div>
     <?php 
     // Exibir mensagens de erro
     if (!empty($erros)) {

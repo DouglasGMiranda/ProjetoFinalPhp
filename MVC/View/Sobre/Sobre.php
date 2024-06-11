@@ -19,17 +19,17 @@ $permissao = isset($_SESSION['usuario']['permissao']) ? $_SESSION['usuario']['pe
 <body>
 <header>
     <div class="cabecalho">
-        <div class="logo"><img src="./" alt="Logo"></div>
+        <div class="logo">D&G</div>
         <nav>
             <ul>
-                <li><a href="Home" class="active">Home</a></li>
+                <li><a href="Home">Home</a></li>
                 <li><a href="Sobre">Sobre</a></li>
                 <li><a href="ListarPedidos">Lista de Pedidos</a></li>
                 <li><a href="CadastroPedido">Cadastro de Pedidos</a></li>
-                <?php if ($permissao === 1): ?>
+                <?php if ($permissao == 1): ?>
                     <li><a href="Usuarios">Usuários</a></li>
                 <?php endif; ?>
-                <li><a href="Suporte">Suporte</a></li>
+                    <li><a href="Suporte">Suporte</a></li>
                 <?php if (isset($_SESSION['usuario'])): ?>
                     <li><a href="index.php?url=LOGOUT">Logout</a></li>
                 <?php else: ?>
@@ -40,7 +40,6 @@ $permissao = isset($_SESSION['usuario']['permissao']) ? $_SESSION['usuario']['pe
         </nav>
     </div>
 </header>
-<body>
     <main>
         <h3 class="texto">MISSÃO VALORES E PRINCIPOS DA D&G</h3>
         <br>
@@ -76,5 +75,9 @@ $permissao = isset($_SESSION['usuario']['permissao']) ? $_SESSION['usuario']['pe
         <p>Na D&G, não apenas movemos mercadorias, mas também construímos conexões. Conexões entre empresas e seus clientes, entre pessoas e seus sonhos. Estamos aqui para tornar o mundo um lugar mais conectado, acessível e próspero. Junte-se a nós em nossa jornada rumo a um futuro logístico brilhante e inspirador.</p>
     </div>
 </body>
-</body>
+<footer>
+        <div class="container">
+            <p>&copy; 2024 Todos os direitos reservados. D&G Logística.</p>
+        </div>
+    </footer>
 </html>

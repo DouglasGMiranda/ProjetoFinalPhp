@@ -12,14 +12,14 @@ $permissao = isset($_SESSION['usuario']['permissao']) ? $_SESSION['usuario']['pe
 <body>
     <header>
         <div class="cabecalho">
-            <div class="logo"><img src="./" alt="Logo"></div>
+            <div class="logo">D&G</div>
             <nav>
                 <ul>
-                    <li><a href="Home" class="active">Home</a></li>
+                    <li><a href="Home">Home</a></li>
                     <li><a href="Sobre">Sobre</a></li>
                     <li><a href="ListarPedidos">Lista de Pedidos</a></li>
                     <li><a href="CadastroPedido">Cadastro de Pedidos</a></li>
-                    <?php if ($permissao === 1): ?>
+                    <?php if ($permissao == 1): ?>
                         <li><a href="Usuarios">Usuários</a></li>
                     <?php endif; ?>
                     <li><a href="Suporte">Suporte</a></li>
@@ -33,10 +33,17 @@ $permissao = isset($_SESSION['usuario']['permissao']) ? $_SESSION['usuario']['pe
             </nav>
         </div>
     </header>
-    <main>
-        <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem, consequuntur deserunt accusantium maxime repellendus mollitia non fugiat explicabo reiciendis eaque dolore alias perferendis saepe laboriosam nobis numquam placeat tempora pariatur!</h1>
-    </main>
-<body>
-    
+        <div class="conteudo-home">
+            <h1>BEM VINDO A D&G</h1>
+            <p>Na D&G, não apenas entregamos produtos, mas também realizamos sonhos. Somos uma equipe apaixonada que se dedica a fornecer soluções logísticas que não apenas atendem, mas excedem as expectativas de nossos clientes.</p><br>
+            <p>Com uma abordagem centrada no cliente e uma mentalidade inovadora, buscamos constantemente novas maneiras de simplificar e aprimorar o processo logístico. Da embalagem à entrega, cada etapa é cuidadosamente planejada e executada para garantir eficiência, confiabilidade e satisfação do cliente.</p><br>  
+            <p>Nosso compromisso com a excelência se estende além dos serviços que oferecemos. Estamos empenhados em construir relacionamentos sólidos e duradouros com nossos clientes, baseados na confiança, transparência e integridade.</p><br>
+            <p>Na D&G, não apenas movemos mercadorias, mas também construímos conexões. Conexões entre empresas e seus clientes, entre pessoas e seus sonhos. Estamos aqui para tornar o mundo um lugar mais conectado, acessível e próspero. Junte-se a nós em nossa jornada rumo a um futuro logístico brilhante e inspirador.</p>
+        </div>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Todos os direitos reservados. D&G Logística.</p>
+        </div>
+    </footer>
 </body>
 </html>
