@@ -7,22 +7,21 @@ if (!isset($_SESSION['usuario'])) {
 }
 include_once(__DIR__ . '/../../../Controller/PedidosController.php');
 $pedidoController = new PedidosController();
+$permissao = $_SESSION['usuario']['permissao'];
 
-$id = $_GET['id'];
-$pedidoController ->procurarPedido($id);
+/*$id = $_GET['id'];
+$pedidoController ->procurarPedido($id);*/
 
 if (isset($_GET['id']) && !empty($_GET['id'])) {
     
     $id = $_GET['id'];
+    $pedido = $pedidoController->buscarPedido($id);
     
     // Agora você pode usar $id para buscar o pedido no banco de dados
 } else {
     echo "ID do pedido inválido na URL!";
 }
 
-
-
-$pedido = $pedidoController->buscarPedido($id);
 $erros = $_SESSION['erros'] ?? [];
 unset($_SESSION['erros']);
 ?>
@@ -38,17 +37,20 @@ unset($_SESSION['erros']);
     <header>
         <div class="cabecalho">
             <div class="logo">A nossa logo</div>
-            <nav>
-                <ul>
-                    <li><a href="Home">Home</a></li>
-                    <li><a href="ListarPedidos">Lista de Pedidos</a></li>
-                    <li><a href="CadastroPedido">Cadastro de Pedidos</a></li>
-                    <?php if (isset($_SESSION['usuario'])): ?>
-                        <li><a href="index.php?url=LOGOUT">Logout</a></li>
-                    <?php else: ?>
-                        <li><a href="Login">Login</a></li>
-                        <li><a href="Cadastro">Cadastro</a></li>
-                    <?php endif; ?>
+                <nav>
+                    <ul>
+                        <li><a href="Home">Home</a></li>
+                        <li><a href="ListarPedidos">Lista de Pedidos</a></li>
+                        <li><a href="CadastroPedido">Cadastro de Pedidos</a></li>
+                        <?php if ($permissao == 1): ?>
+                            <li><a href="Usuarios">Usuários</a></li>
+                        <?php endif; ?>
+                        <?php if (isset($_SESSION['usuario'])): ?>
+                            <li><a href="index.php?url=LOGOUT">Logout</a></li>
+                        <?php else: ?>
+                            <li><a href="Login">Login</a></li>
+                            <li><a href="Cadastro">Cadastro</a></li>
+                        <?php endif; ?>
                 </ul>
             </nav>
         </div>
@@ -80,11 +82,11 @@ unset($_SESSION['erros']);
         <button type="submit" name="atualizarPedido">Atualizar</button>
 
         <?php 
-        if (!empty($erros)) {
-            foreach ($erros as $error) {
-                echo "<div class='error'>$error</div>";
+            if (!empty($erros)) {
+                foreach ($erros as $error) {
+                    echo "<div class='error'>$error</div>";
+                }
             }
-        }
         ?>
     </form>
 </body>

@@ -49,17 +49,18 @@ class PedidosController {
             } 
             else {
                 // Processar o cadastro do pedido
-                $this->processa('C', $user_id, $descricao, $qntd, $pesoKg, $dataRecebimentoObj, $dataEntregaObj, $situacao);
+                $pedido_id = null;
+                $this->processa('C', $user_id, $pedido_id, $descricao, $qntd, $pesoKg, $dataRecebimentoObj, $dataEntregaObj, $situacao);
             }
         }
     }
 
     public function listarPedido() {
         $user_id = $_SESSION['usuario']['idUsuario'];
-        $descricao = $qntd = $pesoKg = $dataRecebimentoObj = $dataEntregaObj = $situacao = null;
+        $descricao = $qntd = $pesoKg = $dataRecebimentoObj = $dataEntregaObj = $situacao = $pedido_id = null;
         $acao = 'R';
 
-        return $this->processa($acao, $user_id, $descricao, $qntd, $pesoKg, $dataRecebimentoObj, $dataEntregaObj, $situacao);
+        return $this->processa($acao, $user_id, $pedido_id, $descricao, $qntd, $pesoKg, $dataRecebimentoObj, $dataEntregaObj, $situacao);
     }
 
     public function atualizarPedido(){
@@ -101,12 +102,21 @@ class PedidosController {
             } 
             else {
                 // Processar o cadastro do pedido
-                $this->processa('U', $user_id, $descricao, $qntd, $pesoKg, $dataRecebimentoObj, $dataEntregaObj, $situacao);
+                $pedido_id = null;
+                $this->processa('U', $user_id, $pedido_id,  $descricao, $qntd, $pesoKg, $dataRecebimentoObj, $dataEntregaObj, $situacao);
             }
         }
     }
 
-    public function processa($acao, $user_id, $descricao, $qntd, $pesoKg, $dataRecebimentoObj, $dataEntregaObj, $situacao){
+    public function excluirPedido($id){
+        $user_id = null;
+        $descricao = $qntd = $pesoKg = $dataRecebimentoObj = $dataEntregaObj = $situacao = null;
+        $acao = 'D';
+        $pedido_id = $id;
+        $this->processa($acao, $user_id, $pedido_id, $descricao, $qntd, $pesoKg, $dataRecebimentoObj, $dataEntregaObj, $situacao);
+    }
+
+    public function processa($acao, $user_id, $pedido_id, $descricao, $qntd, $pesoKg, $dataRecebimentoObj, $dataEntregaObj, $situacao){
         if($acao == 'C'){//Create
             $novoPedido = new Pedido();
             $novoPedido->setUser_id($user_id);
@@ -144,22 +154,18 @@ class PedidosController {
         
                         $novoPedido->atualizar();
         }
+
+        elseif($acao == 'D'){//Delete
+            $novoPedido = new Pedido();
+            $id = $pedido_id;
+            $novoPedido->setPedido_id($id);
+            $novoPedido->deletar($id);
+        }
     }
 
     public function buscarPedido($id) {
         $Pedido = new Pedido();
         return $Pedido->buscar($id);
-    }
-
-    public function procurarPedido($id) {
-        $novoPedido = new Pedido();
-        return $novoPedido->buscar($id);
-    }
-
-    public function deletarPedido($id) {
-        $novoPedido = new Pedido();
-        $novoPedido->deletar($id);
-        header('Location: ListaPedido');
     }
 }
 ?>

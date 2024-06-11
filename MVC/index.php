@@ -65,10 +65,53 @@ elseif ($url == 'ATUALIZARPEDIDO') {
     $PedidosController = new PedidosController();
     $PedidosController->atualizarPedido();
 }
-elseif ($url == 'DELETARPEDIDOS') {
-    require_once(__DIR__ . '/Controller/PedidosController.php');
-    $PedidosController = new PedidosController();
-    $PedidosController->deletarPedido($_GET['id']);
+elseif ($url == 'DELETARPEDIDO') {
+    if (!isset($_SESSION['usuario'])) {
+        header('Location: Login');
+        exit();
+    }
+
+    else{
+        require_once(__DIR__ . '/Controller/PedidosController.php');
+        $PedidosController = new PedidosController();
+        $PedidosController->excluirPedido($_GET['id']);
+    }    
+}
+
+elseif ($url == 'USUARIOS') {
+    if (!isset($_SESSION['usuario'])) {
+        header('Location: Login');
+        exit();
+    }
+    require_once(__DIR__ . '/View/Usuarios/ListarUsuarios/ListarUsuarios.php');
+}
+
+elseif ($url == 'EDITARUSUARIO'){
+    if (!isset($_SESSION['usuario'])) {
+        header('Location: Login');
+        exit();
+    }
+    else {
+        $id = $_GET['id'];
+        require_once(__DIR__ . '/View/Usuarios/EditarUsuarios/EditarUsuarios.php');
+    }
+}
+elseif ($url == 'ATUALIZARUSUARIO') {
+    require_once(__DIR__ . '/Controller/UserController.php');
+    $usuarioController = new UsuarioController();
+    $usuarioController->atualizarUsuario();
+}
+elseif ($url == 'DELETARUSUARIO') {
+    if (!isset($_SESSION['usuario'])) {
+        header('Location: Login');
+        exit();
+    }
+
+    else{
+        require_once(__DIR__ . '/Controller/UserController.php');
+        $usuarioController = new UsuarioController();
+        $usuarioController->excluirUsuario($_GET['id']);
+    }    
 }
 else {
     echo "Página não encontrada!";

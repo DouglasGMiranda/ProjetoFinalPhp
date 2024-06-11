@@ -70,6 +70,56 @@ class Usuario {
         $sql->execute();
         return $sql->fetchColumn();
     }
+
+    public function listarUsuarios() {
+        $conn = Conexao::conectar();
+        $sql = $conn->prepare("SELECT * FROM usuarios order by user_id");
+        $sql->execute();
+        return $sql->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function atualizarUsuario($id) {
+        try {
+            $conn = Conexao::conectar();
+            $sql = $conn->prepare("UPDATE usuarios SET nomeUsuario = :nomeUsuario, email = :email, cpf = :cpf, dataNascimento = :dataNascimento, senha = :senha, permissao = :permissao WHERE user_id = :user_id");
+
+            $sql->bindValue(':user_id', $id);
+            $sql->bindValue(':nomeUsuario', $this->getNomeUsuario());
+            $sql->bindValue(':email', $this->getEmail());
+            $sql->bindValue(':cpf', $this->getCpf());
+            $sql->bindValue(':dataNascimento', $this->getDataNascimento());
+            $sql->bindValue(':senha', $this->getSenha());
+            $sql->bindValue(':permissao', $this->getPermissao());
+
+            $sql->execute();
+            header('Location: Usuarios');
+        } catch (PDOException $erro) {
+            echo "Erro ao atualizar usuário! " . $erro->getMessage();
+        }
+    }
+
+    public function buscarUsuario($id) {
+        $conn = Conexao::conectar();
+        $sql = $conn->prepare("SELECT * FROM usuarios WHERE user_id = :user_id");
+        $sql->bindParam(':user_id', $id);
+        $sql->execute();
+        return $sql->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function deletarUsuario($id) {
+        try {
+            $conn = Conexao::conectar();
+            $sql = $conn->prepare("DELETE FROM usuarios WHERE user_id = :user_id");
+            $sql->bindValue(':user_id', $id);
+            $sql->execute();
+            echo "<script>
+            alert('Usuario deletado com sucesso!');
+            window.location.href = 'Usuarios';
+        </script>";
+        } catch (PDOException $erro) {
+            echo "Erro ao deletar usuário! " . $erro->getMessage();
+        }
+    }
     
 
     // Getters e Setters
@@ -119,6 +169,14 @@ class Usuario {
 
     public function setSenha($senha) {
         $this->senha = $senha;
+    }
+
+    public function getPermissao() {
+        return $this->permissao;
+    }
+
+    public function setPermissao($permissao) {
+        $this->permissao = $permissao;
     }
 }
 ?>

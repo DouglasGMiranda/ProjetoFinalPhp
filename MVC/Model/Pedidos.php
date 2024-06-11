@@ -85,6 +85,10 @@ class Pedido {
             $sql = $conn->prepare("DELETE FROM logistica.pedidos WHERE pedido_id = :pedido_id");
             $sql->bindValue(':pedido_id', $id);
             $sql->execute();
+            echo "<script>
+            alert('Pedido deletado com sucesso!');
+            window.location.href = 'ListarPedidos';
+        </script>";
         } catch (PDOException $erro) {
             echo "Erro ao deletar pedido! " . $erro->getMessage();
         }

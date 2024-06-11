@@ -34,6 +34,9 @@ $pedidos = $PedidosController->listarPedido();
                     <li><a href="Home">Home</a></li>
                     <li><a href="ListarPedidos">Lista de Pedidos</a></li>
                     <li><a href="CadastroPedido">Cadastro de Pedidos</a></li>
+                    <?php if ($permissao == 1): ?>
+                        <li><a href="Usuarios">Usuários</a></li>
+                    <?php endif; ?>
                     <?php if (isset($_SESSION['usuario'])): ?>
                         <li><a href="index.php?url=LOGOUT">Logout</a></li>
                     <?php else: ?>
@@ -59,7 +62,6 @@ $pedidos = $PedidosController->listarPedido();
                 <?php if ($permissao == '1'): ?>
                     <th>Ações</th>
                 <?php endif; ?>
-                
             </tr>
         </thead>
         <tbody>
@@ -75,8 +77,8 @@ $pedidos = $PedidosController->listarPedido();
                     
                     <?php if ($permissao == '1'): ?>
                         <td>
-                        <button onclick="location.href='EditarPedido&id=<?= $pedido['pedido_id'] ?>';">Editar</button>
-                        <button onclick="location.href='ExcluirPedido&id=<?= $pedido['pedido_id'] ?>';">Excluir</button>
+                            <button onclick="location.href='EditarPedido&id=<?= $pedido['pedido_id'] ?>';">Editar</button>
+                            <button onclick="if(confirm('Tem certeza que deseja deletar?')) { location.href='DeletarPedido&id=<?= $pedido['pedido_id'] ?>'; }">Excluir</button>
                         </td>
                     <?php endif; ?>     
                 </tr>

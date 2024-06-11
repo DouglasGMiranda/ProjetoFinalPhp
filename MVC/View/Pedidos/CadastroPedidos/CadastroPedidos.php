@@ -8,6 +8,7 @@ if (!isset($_SESSION['usuario'])) {
 include_once(__DIR__ . '/../../../Controller/PedidosController.php');
 $erros = $_SESSION['erros'] ?? [];
 unset($_SESSION['erros']);
+$permissao = $_SESSION['usuario']['permissao'];
 ?>
 
 <!DOCTYPE html>
@@ -27,6 +28,9 @@ unset($_SESSION['erros']);
                     <li><a href="Home">Home</a></li>
                     <li><a href="ListarPedidos">Lista de Pedidos</a></li>
                     <li><a href="CadastroPedido">Cadastro de Pedidos</a></li>
+                    <?php if ($permissao == 1): ?>
+                        <li><a href="Usuarios">Usuários</a></li>
+                    <?php endif; ?>
                     <?php if (isset($_SESSION['usuario'])): ?>
                         <li><a href="index.php?url=LOGOUT">Logout</a></li>
                     <?php else: ?>
